@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Mjir Math</title>
+
+	<link type="text/css" rel="stylesheet" href="/docs/css/main.css">
+	<link type="text/css" rel="stylesheet" href="/docs/fontawesome/css/all.css">
+	<link rel="shortcut icon" href="/images/favicon.ico">
+
+	<script type="text/javascript" src="/docs/js/jquery.js" defer></script>
+	<script type="text/javascript" src="/docs/js/main.js" defer></script>
+	<script type="text/javascript" src="skill_addition.js" defer></script>
+
+	<style>
+		#app {position: relative; min-height: 377.5px}
+		#interface {display: flex; justify-content: center; align-items: center}
+		#interface ul {display: flex; flex-direction: column; align-items: center; margin: 0; padding: 0; list-style: none}
+		#interface li {display: flex; justify-content: center; padding: 8px; width: 100%}
+		#interface li p {font-weight: bold; font-size: 32px; font-family: sans-serif; text-align: right; width: 200%}
+		#interface input {padding: 16px; border: 1px solid #ccc; border-radius: 4px; width: 100%}
+		#interface button {padding: 16px; border: none; border-radius: 4px; background-color: #16b0ff; color: #fff; width: 100%; transition: 0.3s}
+		#interface button:hover {background-color: #00a6fb; cursor: pointer; transform: translateY(-5px);}
+			#response {display: flex; justify-content: center; border-radius: 4px; width: 100%; overflow: hidden}
+			#response i {padding: 8px 0; text-align: center; color: #fff; width: 50%; transition: 0.3s}
+			#response.right i:first-child {width: 100%}
+			#response.right i:last-child {width: 0%}
+			#response.wrong i:first-child {width: 0%}
+			#response.wrong i:last-child {width: 100%}
+		#settings-container {display: flex; position: absolute; right: calc(100vw - 73px); top: 0; transition: 0.3s}
+			#settings {background-color: #fff; width: calc(100vw - 73px)}
+			#tab {padding: 16px; background-color: #16b0ff; box-shadow: 1px 0 3px rgba(0, 0, 0, 0.25); cursor: pointer; width: 24px; transition: 0.3s}
+			#tab:hover {background-color: #00a6fb}
+			#tab .menu-icon hr {position: relative; background-color: #fff; border: none; height: 2px; transition: 0.5s}
+			#tab p {color: #fff; word-wrap: break-word; font-size: 32px; font-family: "Major Mono Display", sans-serif}
+		#settings-container.open {right: 0}
+		#settings-container.open .menu-icon hr:first-child {width: 50%; right: 8px; top: 6px; transform: rotate(-45deg)}
+		#settings-container.open .menu-icon hr:last-child {width: 50%; right: 8px; bottom: 6px; transform: rotate(45deg)}
+	</style>
+</head>
+<body>
+	<div id="top-nav"></div>
+	<div class="banner" style="background-color:#16b0ff">
+		<div class="textbox" style="color:#fff"><h1>Addition</h1></div>
+	</div>
+	<div id="app">
+		<div id="interface">
+			<ul>
+				<li><input id="answer"></li>
+				<li><button onclick="checkAnswer()">CHECK</button></li>
+				<li><div id="response">
+					<i class="fas fa-check-circle fa-2x" style="background-color: #24ad39"></i>
+					<i class="fas fa-times-circle fa-2x" style="background-color: #f55"></i>
+				</div></li>
+				<li><button onclick="generateProblem()">NEW</button></li>
+			</ul>
+		</div>
+		<div id="settings-container" class="close">
+			<div id="settings">
+			</div>
+			<div id="tab" onclick="toggleSettings('#settings-container')">
+				<div class="menu-icon">
+					<hr>
+					<hr>
+					<hr>
+				</div>
+				<p>SETTINGS</p>
+			</div>
+		</div>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>
