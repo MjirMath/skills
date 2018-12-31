@@ -14,6 +14,13 @@ var correct = null;
 //Main
 generateProblem();
 
+//Events
+window.onkeyup = function(e) {
+	if (e.keyCode == 13) {
+		checkAnswer();
+	}
+}
+
 function toggleSettings(div) {
 	if ($(div).hasClass("close") == true) {
 		$(div).removeClass("close");
@@ -60,6 +67,7 @@ function generateProblem() {
 	DEFAULTS.ANSWER = answer;
 
 	//Do visual stuff
+	//Display if correct or not
 	$("#interface li:nth-child(n+1):nth-child(-n+" + ($("#interface ul li").length - 4) + ")").remove();
 	for (var i = DEFAULTS.CURRENT_NUMBERS.length - 1; i >= 0; i--) {
 		if (i == 0) {
@@ -71,6 +79,9 @@ function generateProblem() {
 	}
 	$("#response").removeClass("right");
 	$("#response").removeClass("wrong");
+	//Set height of settings
+	var appHeight = $("#app").height();
+	$("#settings-container").css("height", (String(appHeight) + "px"));
 }
 
 //Inclusive, Exclusive
@@ -78,4 +89,21 @@ function getRandomInt(min, max) {
 	min = Math.ceil(min);
 	max = Math.floor(max);
 	return Math.floor(Math.random() * (max - min)) + min;
+}
+
+//SETTING FUNCTIONS
+function changeDigits(increment) {
+	DEFAULTS.DIGITS += increment;
+	if (DEFAULTS.DIGITS < DEFAULTS.MIN_DIGITS) {
+		DEFAULTS.DIGITS = DEFAULTS.MIN_DIGITS;
+	}
+	$("#settings .setting:first-child p:nth-child(3)").html(String(DEFAULTS.DIGITS));
+}
+
+function changeNumbers(increment) {
+	DEFAULTS.NUMBERS += increment;
+	if (DEFAULTS.NUMBERS < DEFAULTS.MIN_NUMBERS) {
+		DEFAULTS.NUMBERS = DEFAULTS.MIN_NUMBERS;
+	}
+	$("#settings .setting:nth-child(2) p:nth-child(3)").html(String(DEFAULTS.NUMBERS));
 }

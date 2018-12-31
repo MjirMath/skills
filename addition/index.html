@@ -14,6 +14,7 @@
 	<script type="text/javascript" src="skill_addition.js" defer></script>
 
 	<style>
+		/* I will fix this up one day */
 		#app {position: relative; min-height: 377.5px}
 		#interface {display: flex; justify-content: center; align-items: center}
 		#interface ul {display: flex; flex-direction: column; align-items: center; margin: 0; padding: 0; list-style: none}
@@ -29,7 +30,12 @@
 			#response.wrong i:first-child {width: 0%}
 			#response.wrong i:last-child {width: 100%}
 		#settings-container {display: flex; position: absolute; right: calc(100vw - 73px); top: 0; transition: 0.3s}
-			#settings {background-color: #fff; width: calc(100vw - 73px)}
+			#settings {display: flex; flex-direction: column; align-items: center; padding: 16px; background-color: #fff; width: calc(100vw - 73px)}
+			#settings .setting {display: flex; flex-direction: row; align-items: center; color: #16b0ff; font-family: sans-serif}
+			#settings .setting p {padding: 16px; font-size: 32px}
+			#settings .buttons {display: flex; flex-direction: column; padding: 16px;  color: #16b0ff}
+			#settings .buttons i {transition: 0.3s}
+			#settings .buttons i:hover {color: #00a6fb; cursor: pointer}
 			#tab {padding: 16px; background-color: #16b0ff; box-shadow: 1px 0 3px rgba(0, 0, 0, 0.25); cursor: pointer; width: 24px; transition: 0.3s}
 			#tab:hover {background-color: #00a6fb}
 			#tab .menu-icon hr {position: relative; background-color: #fff; border: none; height: 2px; transition: 0.5s}
@@ -58,6 +64,22 @@
 		</div>
 		<div id="settings-container" class="close">
 			<div id="settings">
+				<div class="setting">
+					<div class="buttons">
+						<i class="fas fa-arrow-alt-circle-up fa-2x" onclick="changeDigits(1)"></i>
+						<i class="fas fa-arrow-alt-circle-down fa-2x" onclick="changeDigits(-1)"></i>
+					</div>
+					<p>Digits</p>
+					<p>1</p>
+				</div>
+				<div class="setting">
+					<div class="buttons">
+						<i class="fas fa-arrow-alt-circle-up fa-2x" onclick="changeNumbers(1)"></i>
+						<i class="fas fa-arrow-alt-circle-down fa-2x" onclick="changeNumbers(-1)"></i>
+					</div>
+					<p>Numbers</p>
+					<p>2</p>
+				</div>
 			</div>
 			<div id="tab" onclick="toggleSettings('#settings-container')">
 				<div class="menu-icon">
